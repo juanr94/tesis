@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de reportes de investigación">
+    <title>Publicaciones</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/ui-bic.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script defer type="module" src="js/ui-bic.js"></script>
+    <script defer src="js/menu-manager.js"></script>
+</head>
+
+<body>
+    <header class="top-bar">
+        <div id="system-name">
+            <a href="#"><img src="images/favicon/favicon-32x32.png" alt="user" loading="lazy"><span>SIRI</span></a>
+        </div>
+
+        <div id="menuBtn">
+            <div id="menuBtn_burger">
+            </div>
+        </div>
+
+        <div id="userBtn-container">
+            <button id="btn-user" type="button" aria-haspopup="true" aria-controls="menu-user" data-toggle="popover"
+                data-target="#menu-user" tabindex="0">
+                <span id="showUsername">lexmark-palacios</span>
+                <span class="imguser-container">
+                    <img src="images/users/user.webp" alt="user" loading="lazy">
+                    <span id="shadowUser"></span>
+                </span>
+            </button>
+            <div id="menu-user" class="popup" role="menu" aria-labelledby="btn-user" tabindex="-1">
+                <ul role="none">
+                    <li class="menu-item" role="none">
+                        <a class="btn-menu-item" href="#" role="menuitem" tabindex="-1">
+                            <span class="icon icon-clover"></span>
+                            <span>Mi perfil</span>
+                        </a>
+                    </li>
+                    <li class="menu-item" role="none">
+                        <button class="btn-menu-item" role="menuitem" tabindex="-1">
+                            <span class="icon icon-clover"></span>
+                            <span>Administración</span>
+                        </button>
+                    </li>
+                    <li class="menu-item" role="none">
+                        <button class="btn-menu-item" role="menuitem" tabindex="-1">
+                            <span class="icon icon-clover"></span>
+                            <span>Cerrar sesión</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </header>
+
+    <nav id="bar" class="navbar">
+        <ul id="ul-main">
+            <li>
+                <button class="default-item click-item" id="investigaciones">Investigaciones</button>
+                <ul class="ul_hide" id="content-investigaciones">
+                    <li>
+                        <button class="default-item item-level-2 click-item" id="investigadores"
+                            tabindex="-1">Investigadores</button>
+                        <ul class="ul_hide" id="content-investigadores">
+                            <li>
+                                <a href="#" class="default-item item-level-3" tabindex="-1">Postgrado</a>
+                            </li>
+                            <li>
+                                <a href="#" class="default-item item-level-3" tabindex="-1">Plata/Docente</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <button class="default-item item-level-2 click-item" id="academicos"
+                            tabindex="-1">Académicos</button>
+                        <ul class="ul_hide" id="content-academicos">
+                            <li>
+                                <a href="#" class="default-item item-level-3" tabindex="-1">Pregrado</a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="default-item item-level-3" tabindex="-1">Postgrado</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <button class="default-item click-item" id="eventos">Eventos</button>
+                <ul class="ul_hide" id="content-eventos">
+                    <li>
+                        <a href="#" class="default-item item-level-2" tabindex="-1">Universidad</a>
+                    </li>
+                    <li>
+                        <a href="#" class="default-item item-level-2" tabindex="-1">CNU / Otros</a>
+                    </li>
+
+                    <li>
+                        <button id="trabajos-presentados" class="default-item item-level-2 click-item"
+                            tabindex="-1">Trabajos presentados</button>
+                        <ul class="ul_hide" id="content-trabajos-presentados">
+                            <li>
+                                <a href="#" class="default-item item-level-3" tabindex="-1">En Eventos</a>
+                            </li>
+                            <li>
+                                <a href="#" class="default-item item-level-3" tabindex="-1">En jornadas</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="default-item " tabindex="-1">Publicaciones</a>
+            </li>
+            <li>
+                <a href="#" class="default-item " tabindex="-1">Presupuesto</a>
+            </li>
+            <li>
+                <a href="#" class="default-item " tabindex="-1">Capacidad instalada</a>
+            </li>
+            <li>
+                <button class="default-item click-item" id="datos-historicos">Datos históricos</button>
+                <ul class="ul_hide" id="content-datos-historicos">
+                    <li>
+                        <a href="#" class="default-item item-level-2" tabindex="-1">Cursos diplomandos</a>
+                    </li>
+                    <li>
+                        <a href="#" class="default-item item-level-2" tabindex="-1">Número de Investigadores</a>
+                    </li>
+                    <li>
+                        <a href="#" class="default-item item-level-2" tabindex="-1">Horas de investigación</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <main id="main">
+        <div class="w-100">
+            <section id="content-main" class="w-95">
+
+                <h3 class="m-2">Publicaciones</h3>
+
+                <form class="mt-1">
+                    <fieldset id="search">
+                        <legend>
+                            <span>Búsqueda</span>
+                        </legend>
+                        <label for="searchInput">Nombre:</label>
+                        <input id="searchInput" type="search" class="control w-100" placeholder="Buscar..."
+                            aria-label="Buscar" aria-labelledby="search-input" aria-autocomplete="both"
+                            aria-haspopup="listbox" autocomplete="off" autocapitalize="off" autocorrect="off"
+                            spellcheck="false" role="combobox" data-target="#animes" tabindex="0" dir="auto">
+
+                        <span class="listbox" role="listbox" id="animes" aria-labelledby="" tabindex="-1">
+                            <ul class="menu"></ul>
+                        </span>
+
+                        <button class="btn-primary m-0">Buscar</button>
+
+                        <label for="period" class="concealable hide-element ">Tipo:</label>
+
+                        <div class="list concealable hide-element">
+                            <select id="period" class="list-data" data-select="status" tabindex="0">
+                                <option value="option-1">Revista</option>
+                                <option value="opcion-2">Congreso</option>
+                            </select>
+                            <button class="list-button" data-select="status" tabindex="-1"></button>
+                        </div>
+
+                        <label for="period" class="concealable hide-element start-in-one">Periodo:</label>
+
+                        <span class="grid-three-columns concealable hide-element">
+
+                            <div class="list">
+                                <select id="period" class="list-data" data-select="status" tabindex="0">
+                                    <option value="opcion-1">I Período</option>
+                                    <option value="opcion-2">II Período</option>
+                                    <option value="opcion-2">III Período</option>
+                                    <option value="opcion-2">IV Período</option>
+                                </select>
+                                <button class="list-button" data-select="status" tabindex="-1"></button>
+                            </div>
+
+                            <label for="period">Año:</label>
+
+                            <div class="list">
+                                <select id="period" class="list-data" data-select="status" tabindex="0">
+                                    <option value="opcion-1">2022</option>
+                                </select>
+                                <button class="list-button" data-select="status" tabindex="-1"></button>
+                            </div>
+
+                        </span>
+
+                        <div class="start-in-two">
+                            <button id="btnAdvancedSearch" class="btn-advanced-search" type="button"
+                                tabindex="-1">Búsqueda
+                                avanzada</button>
+                        </div>
+                    </fieldset>
+                </form>
+                <section id="results" class="fieldset">
+                    <h3 class="legend"><span>Resultados</span></h3>
+
+                    <header id="header-results">
+                        <div class="badge badge-primary">Página: 5</div>
+                        <div class="badge badge-primary">Resultados obtenidos: 5 de 100</div>
+                        <button type="button" class="btn-info" data-toggle="modal" data-target="#example-modal">Agregar publicación</button>
+                    </header>
+
+                    <div id="body-results">
+                        <section class="card p-2">
+                            <div class="card-body">
+                                <div class="card-menu">
+                                    <button id="target01" class="btn-pop" type="button" aria-haspopup="true"
+                                        aria-controls="menu01" data-toggle="popover" data-target="#menu01"
+                                        tabindex="0"></button>
+                                    <div id="menu01" class="popup" role="menu" aria-labelledby="target01" tabindex="-1">
+                                        <ul role="none">
+                                            <li class="menu-item" role="none">
+                                                <a class="btn-menu-item" href="#" role="menuitem" tabindex="-1">
+                                                    <span class="icon icon-clover"></span>
+                                                    <span>Editar</span>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item" role="none">
+                                                <button class="btn-menu-item" role="menuitem" tabindex="-1">
+                                                    <span class="icon icon-clover"></span>
+                                                    <span>Eliminar</span>
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <h5 class="card-title">Crear un panel prefabricado de mortero con fibra de carbono</h5>
+                                <h4>Tipo:</h4>
+                                <small>JUDC</small>
+                                <h4>Autores:</h4>
+                                <small>Leiry Hugget Cerda Irías</small>
+                            </div>
+                            <footer class="card-footer">
+                                <span class="badge sm-badge badge-primary">IP-2022</span>
+                            </footer>
+                        </section>
+
+                        <section class="card p-2">
+                            <div class="card-body">
+                                <div class="card-menu">
+                                    <button id="target01" class="btn-pop" type="button" aria-haspopup="true"
+                                        aria-controls="menu01" data-toggle="popover" data-target="#menu01"
+                                        tabindex="0"></button>
+                                    <div id="menu01" class="popup" role="menu" aria-labelledby="target01" tabindex="-1">
+                                        <ul role="none">
+                                            <li class="menu-item" role="none">
+                                                <a class="btn-menu-item" href="#" role="menuitem" tabindex="-1">
+                                                    <span class="icon icon-clover"></span>
+                                                    <span>Editar</span>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item" role="none">
+                                                <button class="btn-menu-item" role="menuitem" tabindex="-1">
+                                                    <span class="icon icon-clover"></span>
+                                                    <span>Eliminar</span>
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <h5 class="card-title">Crear un panel prefabricado de mortero con fibra de carbono</h5>
+                                <h4>Tipo:</h4>
+                                <small>JUDC</small>
+                                <h4>Autores:</h4>
+                                <small>Leiry Hugget Cerda Irías</small>
+                            </div>
+                            <footer class="card-footer">
+                                <span class="badge sm-badge badge-primary">IP-2022</span>
+                            </footer>
+                        </section>
+
+                        <section class="card p-2">
+                            <div class="card-body">
+                                <div class="card-menu">
+                                    <button id="target01" class="btn-pop" type="button" aria-haspopup="true"
+                                        aria-controls="menu01" data-toggle="popover" data-target="#menu01"
+                                        tabindex="0"></button>
+                                    <div id="menu01" class="popup" role="menu" aria-labelledby="target01" tabindex="-1">
+                                        <ul role="none">
+                                            <li class="menu-item" role="none">
+                                                <a class="btn-menu-item" href="#" role="menuitem" tabindex="-1">
+                                                    <span class="icon icon-clover"></span>
+                                                    <span>Editar</span>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item" role="none">
+                                                <button class="btn-menu-item" role="menuitem" tabindex="-1">
+                                                    <span class="icon icon-clover"></span>
+                                                    <span>Eliminar</span>
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <h5 class="card-title">Crear un panel prefabricado de mortero con fibra de carbono</h5>
+                                <h4>Tipo:</h4>
+                                <small>JUDC</small>
+                                <h4>Autores:</h4>
+                                <small>Leiry Hugget Cerda Irías</small>
+                            </div>
+                            <footer class="card-footer">
+                                <span class="badge sm-badge badge-primary">IP-2022</span>
+                            </footer>
+                        </section>
+
+                        <section class="card p-2">
+                            <div class="card-body">
+                                <div class="card-menu">
+                                    <button id="target01" class="btn-pop" type="button" aria-haspopup="true"
+                                        aria-controls="menu01" data-toggle="popover" data-target="#menu01"
+                                        tabindex="0"></button>
+                                    <div id="menu01" class="popup" role="menu" aria-labelledby="target01" tabindex="-1">
+                                        <ul role="none">
+                                            <li class="menu-item" role="none">
+                                                <a class="btn-menu-item" href="#" role="menuitem" tabindex="-1">
+                                                    <span class="icon icon-clover"></span>
+                                                    <span>Editar</span>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item" role="none">
+                                                <button class="btn-menu-item" role="menuitem" tabindex="-1">
+                                                    <span class="icon icon-clover"></span>
+                                                    <span>Eliminar</span>
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <h5 class="card-title">Crear un panel prefabricado de mortero con fibra de carbono</h5>
+                                <h4>Tipo:</h4>
+                                <small>JUDC</small>
+                                <h4>Autores:</h4>
+                                <small>Leiry Hugget Cerda Irías</small>
+                            </div>
+                            <footer class="card-footer">
+                                <span class="badge sm-badge badge-primary">IP-2022</span>
+                            </footer>
+                        </section>
+
+                        <section class="card p-2">
+                            <div class="card-body">
+                                <div class="card-menu">
+                                    <button id="target01" class="btn-pop" type="button" aria-haspopup="true"
+                                        aria-controls="menu01" data-toggle="popover" data-target="#menu01"
+                                        tabindex="0"></button>
+                                    <div id="menu01" class="popup" role="menu" aria-labelledby="target01" tabindex="-1">
+                                        <ul role="none">
+                                            <li class="menu-item" role="none">
+                                                <a class="btn-menu-item" href="#" role="menuitem" tabindex="-1">
+                                                    <span class="icon icon-clover"></span>
+                                                    <span>Editar</span>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item" role="none">
+                                                <button class="btn-menu-item" role="menuitem" tabindex="-1">
+                                                    <span class="icon icon-clover"></span>
+                                                    <span>Eliminar</span>
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <h5 class="card-title">Crear un panel prefabricado de mortero con fibra de carbono</h5>
+                                <h4>Tipo:</h4>
+                                <small>JUDC</small>
+                                <h4>Autores:</h4>
+                                <small>Leiry Hugget Cerda Irías</small>
+                            </div>
+                            <footer class="card-footer">
+                                <span class="badge sm-badge badge-primary">IP-2022</span>
+                            </footer>
+                        </section>
+
+                        <section class="card p-2">
+                            <div class="card-body">
+                                <div class="card-menu">
+                                    <button id="target01" class="btn-pop" type="button" aria-haspopup="true"
+                                        aria-controls="menu01" data-toggle="popover" data-target="#menu01"
+                                        tabindex="0"></button>
+                                    <div id="menu01" class="popup" role="menu" aria-labelledby="target01" tabindex="-1">
+                                        <ul role="none">
+                                            <li class="menu-item" role="none">
+                                                <a class="btn-menu-item" href="#" role="menuitem" tabindex="-1">
+                                                    <span class="icon icon-clover"></span>
+                                                    <span>Editar</span>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item" role="none">
+                                                <button class="btn-menu-item" role="menuitem" tabindex="-1">
+                                                    <span class="icon icon-clover"></span>
+                                                    <span>Eliminar</span>
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <h5 class="card-title">Crear un panel prefabricado de mortero con fibra de carbono</h5>
+                                <h4>Tipo:</h4>
+                                <small>JUDC</small>
+                                <h4>Autores:</h4>
+                                <small>Leiry Hugget Cerda Irías</small>
+                            </div>
+                            <footer class="card-footer">
+                                <span class="badge sm-badge badge-primary">IP-2022</span>
+                            </footer>
+                        </section>
+
+                        <section class="card p-2">
+                            <div class="card-body">
+                                <div class="card-menu">
+                                    <button id="target01" class="btn-pop" type="button" aria-haspopup="true"
+                                        aria-controls="menu01" data-toggle="popover" data-target="#menu01"
+                                        tabindex="0"></button>
+                                    <div id="menu01" class="popup" role="menu" aria-labelledby="target01" tabindex="-1">
+                                        <ul role="none">
+                                            <li class="menu-item" role="none">
+                                                <a class="btn-menu-item" href="#" role="menuitem" tabindex="-1">
+                                                    <span class="icon icon-clover"></span>
+                                                    <span>Editar</span>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item" role="none">
+                                                <button class="btn-menu-item" role="menuitem" tabindex="-1">
+                                                    <span class="icon icon-clover"></span>
+                                                    <span>Eliminar</span>
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <h5 class="card-title">Crear un panel prefabricado de mortero con fibra de carbono</h5>
+                                <h4>Tipo:</h4>
+                                <small>JUDC</small>
+                                <h4>Autores:</h4>
+                                <small>Leiry Hugget Cerda Irías</small>
+                            </div>
+                            <footer class="card-footer">
+                                <span class="badge sm-badge badge-primary">IP-2022</span>
+                            </footer>
+                        </section>
+
+                        <section class="card p-2">
+                            <div class="card-body">
+                                <div class="card-menu">
+                                    <button id="target01" class="btn-pop" type="button" aria-haspopup="true"
+                                        aria-controls="menu01" data-toggle="popover" data-target="#menu01"
+                                        tabindex="0"></button>
+                                    <div id="menu01" class="popup" role="menu" aria-labelledby="target01" tabindex="-1">
+                                        <ul role="none">
+                                            <li class="menu-item" role="none">
+                                                <a class="btn-menu-item" href="#" role="menuitem" tabindex="-1">
+                                                    <span class="icon icon-clover"></span>
+                                                    <span>Editar</span>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item" role="none">
+                                                <button class="btn-menu-item" role="menuitem" tabindex="-1">
+                                                    <span class="icon icon-clover"></span>
+                                                    <span>Eliminar</span>
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <h5 class="card-title">Crear un panel prefabricado de mortero con fibra de carbono</h5>
+                                <h4>Tipo:</h4>
+                                <small>JUDC</small>
+                                <h4>Autores:</h4>
+                                <small>Leiry Hugget Cerda Irías</small>
+                            </div>
+                            <footer class="card-footer">
+                                <span class="badge sm-badge badge-primary">IP-2022</span>
+                            </footer>
+                        </section>
+
+                    </div>
+
+                    <footer id="footer-results">
+                        <div class="paginate">
+                            <a href="#">«</a>
+                            <button type="button">1</button>
+                            <a href="#">2</a>
+                            <button type="button">3</button>
+                            <a href="#">»</a>
+                        </div>
+                    </footer>
+
+                </section>
+            </section>
+        </div>
+    </main>
+
+    <!-- Ventana modal -->
+    <div class="modal fade modal-scroll" id="example-modal" tabindex="-1" aria-hidden="true"
+        aria-labelledby="example-modal-label">
+        <!-- <div class="modal-dialog modal-lg"> -->
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Publicaciones</h5>
+                    <button type="button" class="btn-close" aria-label="Cancelar"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <form>
+                        
+                        <div class="form-group grid-two-columns-px-1fr ">
+                            <label for="name">Nombre:</label>
+                            <div class="list">
+                                <select id="period" class="list-data" data-select="status" tabindex="0">
+                                    <option value="opcion-1">Revista</option>
+                                </select>
+                                <button class="list-button" data-select="status" tabindex="-1"></button>
+                            </div>
+                        </div>
+
+                        <div class="form-group grid-two-columns-px-1fr ">
+                            <label for="name">Título:</label>
+                            <input type="text" class="control w-100" placeholder="Título..." required>
+                        </div>
+
+                        <div class="form-group grid-two-columns-px-1fr ">
+                            <label for="name">Revista:</label>
+                            <input type="text" class="control w-100" placeholder="Revista..." required>
+                        </div>
+
+                        <div class="form-group grid-two-columns-px-1fr ">
+                            <label for="name">Volumen:</label>
+                            <input type="text" class="control w-100" placeholder="Volumen..." required>
+                        </div>
+
+                        <div class="form-group grid-two-columns-px-1fr ">
+                            <label for="name">Revista:</label>
+                            <input type="text" class="control w-100" placeholder="Revista..." required>
+                        </div>
+
+                        <div class="form-group grid-two-columns-px-1fr ">
+                            <label for="name">Volumen:</label>
+                            <input type="text" class="control w-100" placeholder="Volumen..." required>
+                        </div>
+
+                        <div class="form-group grid-two-columns-px-1fr ">
+                            <label for="name">Páginas:</label>
+                            <input type="text" class="control w-100" placeholder="Página..." required>
+                        </div>
+
+                        <div class="form-group grid-two-columns-px-1fr ">
+                            <label for="name">Año:</label>
+                            <input type="text" class="control w-100" placeholder="Año..." required>
+                        </div>
+
+                        <div class="form-group grid-two-columns-px-1fr ">
+                            <label for="name">Distribución:</label>
+                            <div class="list">
+                                <select id="period" class="list-data" data-select="status" tabindex="0">
+                                    <option value="opcion-1">Digital / Impreso</option>
+                                </select>
+                                <button class="list-button" data-select="status" tabindex="-1"></button>
+                            </div>
+                        </div>
+
+                        <div class="form-group grid-two-columns-px-1fr ">
+                            <label for="name">Ambito:</label>
+                            <div class="list">
+                                <select id="period" class="list-data" data-select="status" tabindex="0">
+                                    <option value="opcion-1">NAcional / Internacional</option>
+                                </select>
+                                <button class="list-button" data-select="status" tabindex="-1"></button>
+                            </div>
+                        </div>
+
+                        
+                        <h3 class="modal-title">Autores</h3>
+
+                        <div class="form-group grid-two-columns-px-1fr ">
+                            <label for="name">Nombres:</label>
+                            <input type="text" class="control w-100" placeholder="Nombre del autor..." required>
+                        </div>
+
+                        <div class="form-group grid-two-columns-px-1fr ">
+                            <label for="name">Apellidos:</label>
+                            <input type="text" class="control w-100" placeholder="Apellido del autor..." required>
+                        </div>
+
+                        <div class="form-group grid-two-columns-px-1fr ">
+                            <label for=""> Sexo:</label>
+                            <div class="form-group grid-three-columns" style="gap: 15px;">
+                                <div class="form-group">
+                                    <input type="radio" id="huey" name="drone" value="huey" checked>
+                                    <label class="lbl-radio" for="huey">Female</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="radio" id="dewey" name="drone" value="dewey">
+                                    <label class="lbl-radio" for="dewey">Male</label>
+                                </div>
+                                <button class="btn-info">Agregar autor</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

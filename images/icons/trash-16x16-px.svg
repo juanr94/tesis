@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="16"
+   height="16"
+   viewBox="0 0 16 16"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20, custom)"
+   sodipodi:docname="trash.svg"
+   inkscape:export-filename="/home/manjaro/Desktop/trash-test.png"
+   inkscape:export-xdpi="3"
+   inkscape:export-ydpi="3"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="3.108143"
+     inkscape:cx="-21.556279"
+     inkscape:cy="-36.034378"
+     inkscape:window-width="1366"
+     inkscape:window-height="709"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g6848"
+     inkscape:showpageshadow="true"
+     showborder="true"
+     borderlayer="false"
+     inkscape:snap-intersection-paths="true"
+     inkscape:object-nodes="false"
+     inkscape:snap-nodes="true"
+     inkscape:snap-others="true"
+     inkscape:snap-bbox="true"
+     inkscape:snap-bbox-edge-midpoints="false"
+     inkscape:snap-midpoints="false"
+     inkscape:snap-page="true"
+     inkscape:object-paths="false"
+     inkscape:snap-smooth-nodes="false" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g6848"
+       transform="matrix(1.0400697,0,0,1.0400697,-10.257844,-0.64814137)"
+       style="stroke-width:43.2663;stroke-miterlimit:4;stroke-dasharray:none"
+       inkscape:export-filename="/home/manjaro/Desktop/g6848.png"
+       inkscape:export-xdpi="3.1875"
+       inkscape:export-ydpi="3.1875">
+      <g
+         id="g6925"
+         transform="matrix(0.03103882,0,0,0.03103882,9.6085048,0.65451994)">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:43.2663;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 50.351391,98.344124 H 461.64861 v 0"
+           id="path2937" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:43.2663;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 206.5044,53.620233 V 20.623169 h 98.99119 v 32.997064 0"
+           id="path3088" />
+        <path
+           id="path6450"
+           style="fill:none;stroke:#000000;stroke-width:43.2663;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+           d="m 88.681298,163.06802 a 76.662677,66.60415 0 0 0 2.653363,11.92544 l 42.715589,248.45587 0.0166,0.0141 a 55.754702,48.439406 0 0 0 -0.0166,0.0984 55.754702,48.439406 0 0 0 55.74398,48.31774 l 0.01,0.009 h 0.0647 132.35273 l 0.007,-0.007 a 55.754702,48.439406 0 0 0 0.0583,0.007 55.754702,48.439406 0 0 0 55.16852,-44.99224 l 0.40733,-0.33424 42.30827,-250.30398 a 76.662675,66.604148 0 0 0 3.14762,-13.18602" />
+      </g>
+    </g>
+  </g>
+</svg>
