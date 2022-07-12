@@ -18,6 +18,7 @@
 
     <script defer type="module" src="js/ui-bic.js"></script>
     <script defer src="js/menu-manager.js"></script>
+    <script defer src="js/publicaciones.js"></script>
 </head>
 
 <body>
@@ -529,100 +530,96 @@
                 <div class="modal-body">
 
                     <form>
-                        
                         <div class="form-group grid-two-columns-px-1fr ">
                             <label for="name">Nombre:</label>
                             <div class="list">
-                                <select id="period" class="list-data" data-select="status" tabindex="0">
-                                    <option value="opcion-1">Revista</option>
+                                <select id="sltPublicaciones" class="list-data" data-select="status" tabindex="0">
+                                    <option value="libro"  selected>Libro</option>
+                                    <option value="seccion de libro">Sección de libro</option>
+                                    <option value="articulo de revista">Artículo de revista</option>
+                                    <option value="articulo de periodico">Artículo de periodíco</option>
+                                    <option value="actas de conferencia">Actas de conferencia</option>
+                                    <option value="informe">Informe</option>
                                 </select>
                                 <button class="list-button" data-select="status" tabindex="-1"></button>
                             </div>
                         </div>
-
-                        <div class="form-group grid-two-columns-px-1fr ">
-                            <label for="name">Título:</label>
-                            <input type="text" class="control w-100" placeholder="Título..." required>
-                        </div>
-
-                        <div class="form-group grid-two-columns-px-1fr ">
-                            <label for="name">Revista:</label>
-                            <input type="text" class="control w-100" placeholder="Revista..." required>
-                        </div>
-
-                        <div class="form-group grid-two-columns-px-1fr ">
-                            <label for="name">Volumen:</label>
-                            <input type="text" class="control w-100" placeholder="Volumen..." required>
-                        </div>
-
-                        <div class="form-group grid-two-columns-px-1fr ">
-                            <label for="name">Revista:</label>
-                            <input type="text" class="control w-100" placeholder="Revista..." required>
-                        </div>
-
-                        <div class="form-group grid-two-columns-px-1fr ">
-                            <label for="name">Volumen:</label>
-                            <input type="text" class="control w-100" placeholder="Volumen..." required>
-                        </div>
-
-                        <div class="form-group grid-two-columns-px-1fr ">
-                            <label for="name">Páginas:</label>
-                            <input type="text" class="control w-100" placeholder="Página..." required>
-                        </div>
-
-                        <div class="form-group grid-two-columns-px-1fr ">
-                            <label for="name">Año:</label>
-                            <input type="text" class="control w-100" placeholder="Año..." required>
-                        </div>
-
-                        <div class="form-group grid-two-columns-px-1fr ">
-                            <label for="name">Distribución:</label>
-                            <div class="list">
-                                <select id="period" class="list-data" data-select="status" tabindex="0">
-                                    <option value="opcion-1">Digital / Impreso</option>
-                                </select>
-                                <button class="list-button" data-select="status" tabindex="-1"></button>
-                            </div>
-                        </div>
-
-                        <div class="form-group grid-two-columns-px-1fr ">
-                            <label for="name">Ambito:</label>
-                            <div class="list">
-                                <select id="period" class="list-data" data-select="status" tabindex="0">
-                                    <option value="opcion-1">NAcional / Internacional</option>
-                                </select>
-                                <button class="list-button" data-select="status" tabindex="-1"></button>
-                            </div>
-                        </div>
-
-                        
-                        <h3 class="modal-title">Autores</h3>
-
-                        <div class="form-group grid-two-columns-px-1fr ">
-                            <label for="name">Nombres:</label>
-                            <input type="text" class="control w-100" placeholder="Nombre del autor..." required>
-                        </div>
-
-                        <div class="form-group grid-two-columns-px-1fr ">
-                            <label for="name">Apellidos:</label>
-                            <input type="text" class="control w-100" placeholder="Apellido del autor..." required>
-                        </div>
-
-                        <div class="form-group grid-two-columns-px-1fr ">
-                            <label for=""> Sexo:</label>
-                            <div class="form-group grid-three-columns" style="gap: 15px;">
-                                <div class="form-group">
-                                    <input type="radio" id="huey" name="drone" value="huey" checked>
-                                    <label class="lbl-radio" for="huey">Female</label>
+                        <fieldset>
+                            <legend>
+                                <span>Campos bibliográficos</span>
+                            </legend>
+                            <div class="form-group grid-two-columns-px-1fr">
+                                <label for=""> Autor:</label>
+                                <div class="form-group grid-two-column-1fr-auto" style="gap: 15px;">
+                                    <input type="text" class="control w-100" placeholder="Autor..." required>
+                                    <button class="btn-info">Editar</button>
                                 </div>
-                                <div class="form-group">
-                                    <input type="radio" id="dewey" name="drone" value="dewey">
-                                    <label class="lbl-radio" for="dewey">Male</label>
-                                </div>
-                                <button class="btn-info">Agregar autor</button>
                             </div>
-                        </div>
-
+                            <div class="form-group grid-two-column-1fr-auto">
+                                <div class="form-group">
+                                    <input type="checkbox" class="" id="check-two" name="check-stacked" required>
+                                    <label class="lbl-check" for="check-two">Autor corporativo</label>
+                                </div>
+                                <input type="text" class="control w-100" placeholder="" required disabled>
+                            </div>
+                            <div class="form-group grid-two-columns-px-1fr ">
+                                <label for="name">Título:</label>
+                                <input type="text" class="control w-100" placeholder="Título..." required>
+                            </div>
+                            <div class="form-group grid-two-columns-px-1fr hide-element" id="componentPblc">
+                                <label for=""> Autor del libro:</label>
+                                <div class="form-group grid-two-column-1fr-auto" style="gap: 15px;">
+                                    <input type="text" class="control w-100" placeholder="Autor del libro..." required>
+                                    <button class="btn-info">Editar</button>
+                                </div>
+                            </div>
+                            <div class="form-group grid-two-columns-px-1fr hide-element" id="componentPblc">
+                                <label for="">Nombre del libro:</label>
+                                <div class="form-group grid-two-column-1fr-auto" style="gap: 15px;">
+                                    <input type="text" class="control w-100" placeholder="Nombre del libro..." required>
+                                    <button class="btn-info">Editar</button>
+                                </div>
+                            </div>
+                            <div class="form-group grid-two-columns-px-1fr hide-element" id="componentPblc">
+                                <label for="name">Nombre de la revista:</label>
+                                <input type="text" class="control w-100" placeholder="Nombre de la revista..." required>
+                            </div>
+                            <div class="form-group grid-two-columns-px-1fr hide-element" id="componentPblc">
+                                <label for="name">Título del periodíco:</label>
+                                <input type="text" class="control w-100" placeholder="Título del periodíco..." required>
+                            </div>
+                            <div class="form-group grid-two-columns-px-1fr ">
+                                <label for="name">Año:</label>
+                                <input type="number" class="control w-100" placeholder="Año..." required>
+                            </div>
+                            <div class="form-group grid-two-columns-px-1fr hide-element " id="componentPblc">
+                                <label for="name">Mes:</label>
+                                <input type="number" class="control w-100" placeholder="Mes..." required>
+                            </div>
+                            <div class="form-group grid-two-columns-px-1fr hide-element " id="componentPblc">
+                                <label for="name">Día:</label>
+                                <input type="number" class="control w-100" placeholder="Día..." required>
+                            </div>
+                            <div class="form-group grid-two-columns-px-1fr hide-element" id="componentPblc">
+                                <label for="name">Páginas:</label>
+                                <input type="number" class="control w-100" placeholder="Páginas..." required>
+                            </div>
+                            <div class="form-group grid-two-columns-px-1fr hide-element " id="componentPblc">
+                                <label for="name">Nombre de publicación de la conferencia:</label>
+                                <input type="text" class="control w-100" placeholder="Nombre de publicación de la conferencia..." required>
+                            </div>
+    
+                            <div class="form-group grid-two-columns-px-1fr" id="componentPblc">
+                                <label for="name">Ciudad:</label>
+                                <input type="text" class="control w-100" placeholder="Ciudad..." required>
+                            </div>
+    
+                            <div class="form-group grid-two-columns-px-1fr" id="componentPblc">
+                                <label for="name">Editorial:</label>
+                                <input type="text" class="control w-100" placeholder="Editorial..." required>
+                            </div>
+                        </fieldset>
+                    
                     </form>
 
                 </div>
