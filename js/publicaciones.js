@@ -1,10 +1,12 @@
 const sltPublicaciones = document.getElementById('sltPublicaciones');
 const componentPblc = document.querySelectorAll('#componentPblc');
+const chkAutorCorp = document.getElementById('chkAutorCorp');
+const autorCorporativo = document.getElementById('autorCorporativo');
 
 /**
- * 
+ * Evento de cambio en select tipo/nombre publicaciOn
  */
-sltPublicaciones.addEventListener('change', () => {
+this.sltPublicaciones.addEventListener('change', () => {
     let seleccion = sltPublicaciones.options[sltPublicaciones.selectedIndex].value;
     if(seleccion.trim() === 'seccion de libro') {
         agregarComponentes(componentPblc,[0,1,6,8,9]);
@@ -19,8 +21,16 @@ sltPublicaciones.addEventListener('change', () => {
     } else if(seleccion.trim() === 'informe') {
         agregarComponentes(componentPblc,[8,9]);
     }
-    eliminarClaseHide(componentPblc[6])   
 },false);
+
+this.chkAutorCorp.addEventListener('change',() => {
+    if(chkAutorCorp.checked){
+        autorCorporativo.disabled = false;
+        autorCorporativo.focus();
+    } else {
+        autorCorporativo.disabled = true;
+    }
+});
 
 /**
  * 
@@ -49,11 +59,8 @@ const agregarComponentes = (componet,positions) => {
             if(i == positions[j]){
                 if(componet[i].classList.contains("hide-element")) {
                     eliminarClaseHide(componet[i])
-                }else{
-                    agregarClaseHide(componet[i])
-                } 
+                }
             } 
         }
-    }
-    
+    } 
 }

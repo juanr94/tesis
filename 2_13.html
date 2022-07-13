@@ -154,9 +154,10 @@
     <main id="main">
         <div class="w-100">
             <section id="content-main" class="w-95">
-
-                <h3 class="m-2">Publicaciones</h3>
-
+                <div class="d-flex justify-content-between m-2">
+                    <h3 class="m-2">Publicaciones</h3>
+                    <p><strong>Período activo: </strong><samp>Tercer trimestre 2022</samp></p>
+                </div>
                 <form class="mt-1">
                     <fieldset id="search">
                         <legend>
@@ -222,7 +223,7 @@
                     <header id="header-results">
                         <div class="badge badge-primary">Página: 5</div>
                         <div class="badge badge-primary">Resultados obtenidos: 5 de 100</div>
-                        <button type="button" class="btn-info" data-toggle="modal" data-target="#example-modal">Agregar publicación</button>
+                        <button type="button" class="btn-info" data-toggle="modal" data-target="#form-publicacion">Agregar publicación</button>
                     </header>
 
                     <div id="body-results">
@@ -516,8 +517,9 @@
     </main>
 
     <!-- Ventana modal -->
-    <div class="modal fade modal-scroll" id="example-modal" tabindex="-1" aria-hidden="true"
-        aria-labelledby="example-modal-label">
+    <div class="modal-content">
+        <div class="modal fade modal-scroll" id="form-publicacion" tabindex="-1" aria-hidden="true"
+        aria-labelledby="form-publicacion-label">
         <!-- <div class="modal-dialog modal-lg"> -->
         <div class="modal-dialog">
             <div class="modal-content">
@@ -528,7 +530,6 @@
                 </div>
 
                 <div class="modal-body">
-
                     <form>
                         <div class="form-group grid-two-columns-px-1fr ">
                             <label for="name">Nombre:</label>
@@ -552,15 +553,15 @@
                                 <label for=""> Autor:</label>
                                 <div class="form-group grid-two-column-1fr-auto" style="gap: 15px;">
                                     <input type="text" class="control w-100" placeholder="Autor..." required>
-                                    <button class="btn-info">Editar</button>
+                                    <button type="button" class="btn-info" data-toggle="modal" data-target="#form-edit-autor">Editar</button>
                                 </div>
                             </div>
                             <div class="form-group grid-two-column-1fr-auto">
                                 <div class="form-group">
-                                    <input type="checkbox" class="" id="check-two" name="check-stacked" required>
-                                    <label class="lbl-check" for="check-two">Autor corporativo</label>
+                                    <input type="checkbox" class="" id="chkAutorCorp" name="check-stacked" required>
+                                    <label class="lbl-check" for="check-two" >Autor corporativo</label>
                                 </div>
-                                <input type="text" class="control w-100" placeholder="" required disabled>
+                                <input type="text" class="control w-100" placeholder="" id="autorCorporativo" disabled>
                             </div>
                             <div class="form-group grid-two-columns-px-1fr ">
                                 <label for="name">Título:</label>
@@ -570,15 +571,12 @@
                                 <label for=""> Autor del libro:</label>
                                 <div class="form-group grid-two-column-1fr-auto" style="gap: 15px;">
                                     <input type="text" class="control w-100" placeholder="Autor del libro..." required>
-                                    <button class="btn-info">Editar</button>
+                                    <button type="button" class="btn-info" data-toggle="modal" data-target="#form-edit-autor-libro">Editar</button>
                                 </div>
                             </div>
                             <div class="form-group grid-two-columns-px-1fr hide-element" id="componentPblc">
                                 <label for="">Nombre del libro:</label>
-                                <div class="form-group grid-two-column-1fr-auto" style="gap: 15px;">
-                                    <input type="text" class="control w-100" placeholder="Nombre del libro..." required>
-                                    <button class="btn-info">Editar</button>
-                                </div>
+                                <input type="text" class="control w-100" placeholder="Nombre del libro..." required>
                             </div>
                             <div class="form-group grid-two-columns-px-1fr hide-element" id="componentPblc">
                                 <label for="name">Nombre de la revista:</label>
@@ -592,11 +590,11 @@
                                 <label for="name">Año:</label>
                                 <input type="number" class="control w-100" placeholder="Año..." required>
                             </div>
-                            <div class="form-group grid-two-columns-px-1fr hide-element " id="componentPblc">
+                            <div class="form-group grid-two-columns-px-1fr hide-element" id="componentPblc">
                                 <label for="name">Mes:</label>
                                 <input type="number" class="control w-100" placeholder="Mes..." required>
                             </div>
-                            <div class="form-group grid-two-columns-px-1fr hide-element " id="componentPblc">
+                            <div class="form-group grid-two-columns-px-1fr hide-element" id="componentPblc">
                                 <label for="name">Día:</label>
                                 <input type="number" class="control w-100" placeholder="Día..." required>
                             </div>
@@ -604,7 +602,7 @@
                                 <label for="name">Páginas:</label>
                                 <input type="number" class="control w-100" placeholder="Páginas..." required>
                             </div>
-                            <div class="form-group grid-two-columns-px-1fr hide-element " id="componentPblc">
+                            <div class="form-group grid-two-columns-px-1fr hide-element" id="componentPblc">
                                 <label for="name">Nombre de publicación de la conferencia:</label>
                                 <input type="text" class="control w-100" placeholder="Nombre de publicación de la conferencia..." required>
                             </div>
@@ -618,6 +616,10 @@
                                 <label for="name">Editorial:</label>
                                 <input type="text" class="control w-100" placeholder="Editorial..." required>
                             </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn-light">Cancelar</button>
+                                <button type="button" class="btn-primary">Agregar</button>
+                            </div>
                         </fieldset>
                     
                     </form>
@@ -626,6 +628,79 @@
 
             </div>
         </div>
+    </div>
+    <!-- Ventana modal -->
+    <div class="modal fade modal-scroll" id="form-edit-autor" tabindex="-1" aria-hidden="true"
+        aria-labelledby="form-edit-autor-label">
+        <!-- <div class="modal-dialog modal-lg"> -->
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar nombre</h5>
+                    <button type="button" class="btn-close" aria-label="Cancelar"></button>
+                </div>
+
+                <fieldset class="m-2">
+                    <legend><span>Agregar nombre</span></legend>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group grid-two-columns-px-1fr">
+                                <label for=""> Nombre:</label>
+                                <input type="text" class="control w-100" placeholder="Nombre..." required>
+                            </div>
+                            <div class="form-group grid-two-columns-px-1fr">
+                                <label for=""> Apellido:</label>
+                                <input type="text" class="control w-100" placeholder="Apellido..." required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn-light">Cancelar</button>
+                                <button type="button" class="btn-primary">Agregar</button>
+                            </div>
+                        </form>
+    
+                    </div>
+                </fieldset>
+
+            </div>
+        </div>
+    </div>
+    <!--Modal autor del libro-->
+    <div class="modal fade modal-scroll" id="form-edit-autor-libro" tabindex="-1" aria-hidden="true"
+    aria-labelledby="form-edit-autor-libro-label">
+    <!-- <div class="modal-dialog modal-lg"> -->
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Editar nombre</h5>
+                <button type="button" class="btn-close" aria-label="Cancelar"></button>
+            </div>
+
+            <fieldset class="m-2">
+                <legend><span>Agregar nombre</span></legend>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group grid-two-columns-px-1fr">
+                            <label for=""> Nombre:</label>
+                            <input type="text" class="control w-100" placeholder="Nombre..." required>
+                        </div>
+                        <div class="form-group grid-two-columns-px-1fr">
+                            <label for=""> Apellido:</label>
+                            <input type="text" class="control w-100" placeholder="Apellido..." required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn-light">Cancelar</button>
+                            <button type="button" class="btn-primary">Agregar</button>
+                        </div>
+                    </form>
+
+                </div>
+            </fieldset>
+
+        </div>
+    </div>
+</div>
     </div>
 </body>
 
