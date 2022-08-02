@@ -92,13 +92,14 @@ let modalTargets, modalCloseTimeout, modalDisplayTimeout;
 /**
  * Bootstrap de ventanas modales
  */
-function modal() {
+function renderModals() {
    // Inicializacion de variables
-   modalTargets = getElements('button[data-toggle="modal"]');
+   modalTargets = getElements('[data-toggle="modal"]');
 
    // Comportamiento de componentes
    modalTargets.forEach(target => {
       target.addEventListener('click', (evt) => {
+         evt.preventDefault();
          showModal(target.getAttribute('data-target'));
       }, { capture: false });
    });
@@ -114,16 +115,22 @@ export function showModal(querySelector) {
    let dialog = modal.querySelector('.modal-dialog');
    let btnClose = dialog.firstElementChild.firstElementChild.lastElementChild;
 
+   modal.setAttribute('aria-hidden', false);
+
    modalDisplayTimeout = setTimeout(() => {
       body.classList.add('modal-open');
       modal.style.display = 'block';
       modal.scrollTo(0, 0);
       modal.style.opacity = '1';
-      dialog.style.transform = 'translateY(0)';
+      modal.classList.contains('center') ?
+         dialog.style.transform = 'translateY(-50%)' :
+         dialog.style.transform = 'translateY(0)';
+
       clearTimeout(modalDisplayTimeout);
    }, 10);
 
-   btnClose.addEventListener('click', () => {
+   btnClose.addEventListener('click', (evt) => {
+      evt.preventDefault();
       hideModal(querySelector);
    }, { capture: false, once: true });
 }
@@ -137,13 +144,17 @@ export function hideModal(querySelector) {
    let modal = getElement(querySelector);
    let dialog = modal.querySelector('.modal-dialog');
    let btnClose = dialog.firstElementChild.firstElementChild.lastElementChild;
+   let openModals = getElements('.modal[aria-hidden=false]');
 
+   modal.setAttribute('aria-hidden', true);
    modal.style.opacity = '0';
-   dialog.style.transform = 'translateY(-50px)';
+   modal.classList.contains('center') ?
+      dialog.style.transform = 'translateY(-75%)' :
+      dialog.style.transform = 'translateY(-50px)';
 
    modalCloseTimeout = setTimeout(() => {
       modal.style.display = "none";
-      body.classList.remove("modal-open");
+      if (openModals.length < 2) body.classList.remove("modal-open");
       clearTimeout(modalCloseTimeout);
    }, 200);
 
@@ -179,7 +190,7 @@ let popProps = {
 /**
  * Bootstrap de popovers
  */
-function popover() {
+function renderPopovers() {
    // Inicializacion de variables
    popTargets = getElements('[data-toggle=popover]');
 
@@ -238,24 +249,28 @@ function onFocusinPopoverTarget(target) {
       evt.preventDefault();
 
       popProps.pop = getElement(target.getAttribute('data-target'));
+
       popProps.buttons = popProps.pop.querySelectorAll('[class=btn-menu-item]');
       popProps.isOpen = true;
       popProps.pop.style.display = 'block';
       target.setAttribute('aria-expanded', true);
 
       const targetOffset = offset(target);
-      const popuOffset = offset(popProps.pop);
+      const popOffset = offset(popProps.pop);
+      const offsetForRoundedTarget =
+         target.getAttribute("class") == "btn-pop" ?
+            { top: 10, width: 22 } : { top: 0, width: 0 };
 
       popProps.pop.style.top = (target.offsetTop - target.scrollTop +
-         target.clientTop + target.clientHeight + 2) + "px";
+         target.clientTop + target.clientHeight + 2 - offsetForRoundedTarget.top) + "px";
 
       popProps.pop.style.left =
-         (targetOffset.width < popuOffset.width) ?
+         (targetOffset.width < popOffset.width) ?
             (target.offsetLeft - target.scrollLeft +
-               target.clientLeft - popuOffset.width +
-               targetOffset.width) + "px" :
+               target.clientLeft - popOffset.width +
+               targetOffset.width - offsetForRoundedTarget.width) + "px" :
             (target.offsetLeft - target.scrollLeft +
-               target.clientLeft - popuOffset.width / 2 +
+               target.clientLeft - popOffset.width / 2 +
                targetOffset.width / 2) + "px";
 
    }, {
@@ -406,19 +421,23 @@ function windowOnResizePopover(evt) {
    evt.preventDefault();
    if (popProps.pop && popProps.isOpen) {
       const target = getElement(`#${popProps.pop.getAttribute("aria-labelledby")}`);
+
       const targetOffset = offset(target);
-      const popuOffset = offset(popProps.pop);
+      const popOffset = offset(popProps.pop);
+      const offsetForRoundedTarget =
+         target.getAttribute("class") == "btn-pop" ?
+            { top: 10, width: 22 } : { top: 0, width: 0 };
 
       popProps.pop.style.top = (target.offsetTop - target.scrollTop +
-         target.clientTop + target.clientHeight + 2) + "px";
+         target.clientTop + target.clientHeight + 2 - offsetForRoundedTarget.top) + "px";
 
       popProps.pop.style.left =
-         (targetOffset.width < popuOffset.width) ?
+         (targetOffset.width < popOffset.width) ?
             (target.offsetLeft - target.scrollLeft +
-               target.clientLeft - popuOffset.width +
-               targetOffset.width) + "px" :
+               target.clientLeft - popOffset.width +
+               targetOffset.width - offsetForRoundedTarget.width) + "px" :
             (target.offsetLeft - target.scrollLeft +
-               target.clientLeft - popuOffset.width / 2 +
+               target.clientLeft - popOffset.width / 2 +
                targetOffset.width / 2) + "px";
    }
 }
@@ -550,44 +569,35 @@ let selects;
 /**
  * Bootstrap de selects nativos
  */
-function nativeSelect() {
+function renderNativeSelects() {
    // Inicializacion de variables
    selects = getElements('select[class=list-data]');
 
    // Comportamiento de componentes
    selects.forEach(select => {
+      let attr = select.getAttribute('data-select');
+      let btn = getElement(`button[class=list-button][data-select=${attr}]`);
+
+      select.addEventListener('mouseenter', (evt) => {
+         evt.preventDefault();
+         btn.style.backgroundColor = "#d6d6d6";
+      }, false);
+
+      select.addEventListener('mouseleave', (evt) => {
+         evt.preventDefault();
+         btn.style.backgroundColor = "#dfdfdf";
+      }, false);
+
       select.addEventListener('focusin', (evt) => {
          evt.preventDefault();
-
-         try {
-            let attr = select.getAttribute('data-select');
-            let btn = getElement(`button[class=list-button][data-select=${attr}]`);
-
-            if (btn == null)
-               throw new Error(`Atributo [data-select=${attr}] no encontrado en botón.`);
-
-            btn.style.border = '1px solid #4A4C7D';
-         } catch (error) {
-            console.error(error);
-         }
-
+         btn.style.border = '1px solid #4A4C7D';
+         btn.style.boxShadow = "0 0 .25em .25em rgba(35, 102, 209, .2)";
       }, false);
 
       select.addEventListener('focusout', (evt) => {
          evt.preventDefault();
-
-         try {
-            let attr = select.getAttribute('data-select');
-            let btn = getElement(`button[class=list-button][data-select=${attr}]`);
-
-            if (btn == null)
-               throw new Error(`Atributo [data-select=${attr}] no encontrado en botón.`);
-
-            btn.style.border = '1px solid #dbdbdb';
-         } catch (error) {
-            console.error(error);
-         }
-
+         btn.style.border = '1px solid #dbdbdb';
+         btn.style.boxShadow = "none";
       }, false);
    });
 }
@@ -597,7 +607,12 @@ function nativeSelect() {
  *-----------------------------------------------------*/
 
 // Variables
-let tipTargets, tipDisplayTimeout, totalTooltips = 0;
+let tipTargets, tipDisplayTimeout;
+
+let tipProps = {
+   tip: null,
+   isVisible: true
+}
 
 /**
  * Elimina un tooltip a partir de su elemento desencadenante.
@@ -634,8 +649,11 @@ export function addTip(target, title = "", place = "") {
 
    target.addEventListener('mouseover', (evt) => {
       evt.preventDefault();
+
       document.body.append(tooltip);
       tooltip.style.display = 'block';
+      tipProps.tip = tooltip;
+      tipProps.isVisible = true;
 
       const targetPosition = offset(target);
       const tipPosition = offset(tooltip);
@@ -719,21 +737,38 @@ export function addTip(target, title = "", place = "") {
    target.addEventListener('mouseleave', (evt) => {
       evt.preventDefault();
       clearTimeout(tipDisplayTimeout);
+
       tooltip.style.display = 'none';
       tooltip.style.opacity = '0';
+
       deleteTip(target);
+
+      tipProps.tip = null;
+      tipProps.isVisible = false;
    }, false);
 }
 
 /**
  * Bootstrap de tooltips
  */
-function tooltip() {
+function renderTooltips() {
    tipTargets = getElements('[data-toggle=tooltip]');
 
    tipTargets.forEach(target => {
       addTip(target);
    });
+}
+
+/**
+ * Evento Scroll que actualiza y oculta la visibilidad del tooltip.
+ * @param {Event} evt Evento Scroll del objeto window.
+ */
+function windowOnScrollTooltip(evt) {
+   evt.preventDefault();
+   if (tipProps.tip && tipProps.isVisible) {
+      tipProps.tip.style.display = 'none';
+      tipProps.tip.style.opacity = '0';
+   }
 }
 
 /*-----------------------------------------------------
@@ -917,7 +952,7 @@ export class Search {
       this.#event('input', (evt) => {
          evt.preventDefault();
 
-         if (!target.value) {
+         if (!evt.target.value) {
             this.#dataLength = 0;
             this.listbox.style.display = 'none';
          }
@@ -1184,23 +1219,22 @@ export class Spinner {
    constructor() { }
 
    /**
-    * Funcion constructora del spinner.
-    * @param {string} spin Id de la spinner.
-    * @param {string} btnUp Botón de arriba.
-    * @param {string} btnDown Botón de abajo.
+    * Funcion personalizadora del componente spinner.
+    * @param {string} spinnerId Id del spinner.
     */
-   create(spin, btnUp, btnDown) {
-      this.spin = $(spin);
-      this.btnUp = $(btnUp);
-      this.btnDown = $(btnDown);
-      this.#bind();
+   build(spinnerId) {
+      this.spin = $(spinnerId);
+      this.spinnerButtons = getElement(`span[data-spinner=${spinnerId}]`);
+      this.btnUp = this.spinnerButtons.firstElementChild;
+      this.btnDown = this.spinnerButtons.lastElementChild;
+      this.#bindEvents();
    }
 
    /**
     * Enlaza las propiedades del input
     * spin con el boton de arriba y de abajo.
     */
-   #bind() {
+   #bindEvents() {
       // Eventos click del botón de arriba y abajo
       this.btnUp.addEventListener('click', (evt) => {
          evt.preventDefault();
@@ -1218,50 +1252,53 @@ export class Spinner {
       this.btnUp.addEventListener('focusin', (evt) => {
          evt.preventDefault();
          this.spin.focus();
-         this.#buttonsFocus('#4A4C7D');
+         this.#focusButtons('#4A4C7D', 'rgba(35, 102, 209, .2)');
       }, false);
 
       this.btnUp.addEventListener('focusout', (evt) => {
          evt.preventDefault();
          this.spin.focus();
-         this.#buttonsFocus('#dbdbdb');
+         this.#focusButtons('#dbdbdb', 'transparent');
       }, false);
 
       // Eventos de enfoque del boton de abajo
       this.btnDown.addEventListener('focusin', (evt) => {
          evt.preventDefault();
          this.spin.focus();
-         this.#buttonsFocus('#4A4C7D');
+         this.#focusButtons('#4A4C7D', 'rgba(35, 102, 209, .2)');
       }, false);
 
       this.btnDown.addEventListener('focusout', (evt) => {
          evt.preventDefault();
          this.spin.focus();
-         this.#buttonsFocus('#dbdbdb');
+         this.#focusButtons('#dbdbdb', 'transparent');
       }, false);
 
       // Evento de enfoque de input spin
       this.spin.addEventListener('focusin', (evt) => {
          evt.preventDefault();
-         this.#buttonsFocus('#4A4C7D');
+         this.#focusButtons('#4A4C7D', 'rgba(35, 102, 209, .2)');
       }, false);
 
       this.spin.addEventListener('focusout', (evt) => {
          evt.preventDefault();
-         this.#buttonsFocus('#dbdbdb');
+         this.#focusButtons('#dbdbdb', 'transparent');
       }, false);
    }
 
    /**
     * Establece de forma generica el color de los bordes
     * de los botones de arriba y abajo del componente spin.
-    * @param {string} color Color en cualquier formato RGB, RGBA, HEX...
+    * @param {string} borderColor Color en cualquier formato RGB, RGBA, HEX...
+    * @param {string} boxShadowColor Color de la sombra del componente.
     */
-   #buttonsFocus(color) {
-      this.btnUp.style.border = `1px solid ${color}`;
-      this.btnDown.style.borderLeft = `1px solid ${color}`;
-      this.btnDown.style.borderRight = `1px solid ${color}`;
-      this.btnDown.style.borderBottom = `1px solid ${color}`;
+   #focusButtons(borderColor, boxShadowColor) {
+      this.btnUp.style.border = `1px solid ${borderColor}`;
+      this.btnDown.style.borderLeft = `1px solid ${borderColor}`;
+      this.btnDown.style.borderRight = `1px solid ${borderColor}`;
+      this.btnDown.style.borderBottom = `1px solid ${borderColor}`;
+      this.btnUp.style.boxShadow = `0 0 .25em .25em ${boxShadowColor}`;
+      this.btnDown.style.boxShadow = `0 0 .25em .25em ${boxShadowColor}`;
    }
 
    /**
@@ -1301,9 +1338,10 @@ export class Spinner {
    }
 }
 
-window.addEventListener('load', modal, false);
-window.addEventListener('load', popover, false);
-window.addEventListener('load', nativeSelect, false);
-window.addEventListener('load', tooltip, false);
+window.addEventListener('load', renderModals, false);
+window.addEventListener('load', renderPopovers, false);
+window.addEventListener('load', renderNativeSelects, false);
+window.addEventListener('load', renderTooltips, false);
 window.addEventListener('mousedown', windowOnMousedownPopover, false);
 window.addEventListener('resize', windowOnResizePopover, false);
+window.addEventListener('scroll', windowOnScrollTooltip, false);

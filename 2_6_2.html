@@ -5,42 +5,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Sistema de reportes de investigación">
-    <title>Investigadores contratado por nivel de formación</title>
+    <title>Investigadores contratados por nivel de formación</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
     <link rel="manifest" href="images/favicon/site.webmanifest">
 
+    
     <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/datepicker.min.css">
+    <link rel="stylesheet" href="css/simplebar.min.css">
     <link rel="stylesheet" href="css/ui-bic.css">
     <link rel="stylesheet" href="css/style.css">
 
     <script defer type="module" src="js/ui-bic.js"></script>
-    <script defer src="js/menu-manager.js"></script>
+    <script defer type="module" src="js/datepicker.min.js"></script>
+    <script defer type="module" src="js/simplebar.min.js"></script>
+    <script defer type="module" src="js/main-handler.js"></script>
+    <script defer type="module" src="js/academic-units.js"></script>
 </head>
 
 <body>
     <header class="top-bar">
-        <div id="system-name">
-            <a href="#"><img src="images/favicon/favicon-32x32.png" alt="user" loading="lazy"><span>SIRI</span></a>
+        <div id="systemName">
+            <a href="#"><img src="images/favicon/favicon-32x32.png" alt="user" loading="lazy">
+                <span>SIRI</span>
+            </a>
         </div>
 
-        <div id="menuBtn">
-            <div id="menuBtn_burger">
+        <div id="containerBurgerMenu">
+            <div id="btnBurgerMenu">
             </div>
         </div>
 
         <div id="userBtn-container">
-            <button id="btn-user" type="button" aria-haspopup="true" aria-controls="menu-user" data-toggle="popover"
+            <button id="btnUser" type="button" aria-haspopup="true" aria-controls="menu-user" data-toggle="popover"
                 data-target="#menu-user" tabindex="0">
                 <span id="showUsername">lexmark-palacios</span>
-                <span class="imguser-container">
+                <span class="img-user-container">
                     <img src="images/users/user.webp" alt="user" loading="lazy">
                     <span id="shadowUser"></span>
                 </span>
             </button>
-            <div id="menu-user" class="popup" role="menu" aria-labelledby="btn-user" tabindex="-1">
+            <div id="menu-user" class="popup" role="menu" aria-labelledby="btnUser" tabindex="-1">
                 <ul role="none">
                     <li class="menu-item" role="none">
                         <a class="btn-menu-item" href="#" role="menuitem" tabindex="-1">
@@ -67,83 +75,156 @@
     </header>
 
     <nav id="bar" class="navbar">
-        <ul id="ul-main">
-            <li>
-                <button class="default-item click-item" id="investigaciones">Investigaciones</button>
-                <ul class="ul_hide" id="content-investigaciones">
-                    <li>
-                        <button class="default-item item-level-2 click-item" id="investigadores"
-                            tabindex="-1">Investigadores</button>
-                        <ul class="ul_hide" id="content-investigadores">
-                            <li>
-                                <a href="#" class="default-item item-level-3" tabindex="-1">Postgrado</a>
+        <ul id="ulMain">
+            <li class="item-container">
+                <button class="default-item click-item" id="investigaciones">
+                    <span>Investigaciones</span>
+                </button>
+                <ul class="ul-hide" id="content-investigaciones">
+                    <li class="item-container">
+                        <button class="default-item item-level-2 click-item" id="investigadores" tabindex="-1">
+                            <span>Investigadores</span>
+                        </button>
+                        <ul class="ul-hide" id="content-investigadores">
+                            <li class="item-container">
+                                <button class="default-item item-level-3" tabindex="-1">
+                                    <span>
+                                        Postgrado
+                                    </span>
+                                </button>
                             </li>
-                            <li>
-                                <a href="#" class="default-item item-level-3" tabindex="-1">Plata/Docente</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <button class="default-item item-level-2 click-item" id="academicos"
-                            tabindex="-1">Académicos</button>
-                        <ul class="ul_hide" id="content-academicos">
-                            <li>
-                                <a href="#" class="default-item item-level-3" tabindex="-1">Pregrado</a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="default-item item-level-3" tabindex="-1">Postgrado</a>
+                            <li class="item-container">
+                                <button class="default-item item-level-3" tabindex="-1">
+                                    <span>
+                                        Plata/Docente
+                                    </span>
+                                </button>
                             </li>
                         </ul>
                     </li>
-                </ul>
-            </li>
 
-            <li>
-                <button class="default-item click-item" id="eventos">Eventos</button>
-                <ul class="ul_hide" id="content-eventos">
-                    <li>
-                        <a href="#" class="default-item item-level-2" tabindex="-1">Universidad</a>
-                    </li>
-                    <li>
-                        <a href="#" class="default-item item-level-2" tabindex="-1">CNU / Otros</a>
-                    </li>
-
-                    <li>
-                        <button id="trabajos-presentados" class="default-item item-level-2 click-item"
-                            tabindex="-1">Trabajos presentados</button>
-                        <ul class="ul_hide" id="content-trabajos-presentados">
-                            <li>
-                                <a href="#" class="default-item item-level-3" tabindex="-1">En Eventos</a>
+                    <li class="item-container">
+                        <button class="default-item item-level-2 click-item" id="academicos" tabindex="-1">
+                            <span>
+                                Académicos
+                            </span>
+                        </button>
+                        <ul class="ul-hide" id="content-academicos">
+                            <li class="item-container">
+                                <button class="default-item item-level-3" tabindex="-1">
+                                    <span>
+                                        Pregrado
+                                    </span>
+                                </button>
                             </li>
-                            <li>
-                                <a href="#" class="default-item item-level-3" tabindex="-1">En jornadas</a>
+
+                            <li class="item-container">
+                                <button class="default-item item-level-3" tabindex="-1">
+                                    <span>
+                                        Postgrado
+                                    </span>
+                                </button>
                             </li>
                         </ul>
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="#" class="default-item " tabindex="-1">Publicaciones</a>
-            </li>
-            <li>
-                <a href="#" class="default-item " tabindex="-1">Presupuesto</a>
-            </li>
-            <li>
-                <a href="#" class="default-item " tabindex="-1">Capacidad instalada</a>
-            </li>
-            <li>
-                <button class="default-item click-item" id="datos-historicos">Datos históricos</button>
-                <ul class="ul_hide" id="content-datos-historicos">
-                    <li>
-                        <a href="#" class="default-item item-level-2" tabindex="-1">Cursos diplomandos</a>
+
+            <li class="item-container">
+                <button class="default-item click-item" id="eventos">
+                    <span>
+                        Eventos
+                    </span>
+                </button>
+                <ul class="ul-hide" id="content-eventos">
+                    <li class="item-container">
+                        <button class="default-item item-level-2" tabindex="-1">
+                            <span>
+                                Universidad
+                            </span>
+                        </button>
                     </li>
-                    <li>
-                        <a href="#" class="default-item item-level-2" tabindex="-1">Número de Investigadores</a>
+                    <li class="item-container">
+                        <button class="default-item item-level-2" tabindex="-1">
+                            <span>
+                                CNU / Otros
+                            </span>
+                        </button>
                     </li>
-                    <li>
-                        <a href="#" class="default-item item-level-2" tabindex="-1">Horas de investigación</a>
+
+                    <li class="item-container">
+                        <button id="trabajos-presentados" class="default-item item-level-2 click-item" tabindex="-1">
+                            <span>
+                                Trabajos presentados
+                            </span>
+                        </button>
+                        <ul class="ul-hide" id="content-trabajos-presentados">
+                            <li class="item-container">
+                                <button class="default-item item-level-3" tabindex="-1">
+                                    <span>
+                                        En Eventos
+                                    </span>
+                                </button>
+                            </li>
+                            <li class="item-container">
+                                <button class="default-item item-level-3" tabindex="-1">
+                                    <span>
+                                        En jornadas
+                                    </span>
+                                </button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="item-container">
+                <button class="default-item" tabindex="-1">
+                    <span>
+                        Publicaciones
+                    </span>
+                </button>
+            </li>
+            <li class="item-container">
+                <button class="default-item" tabindex="-1">
+                    <span>
+                        Presupuesto
+                    </span>
+                </button>
+            </li>
+            <li class="item-container">
+                <button class="default-item" tabindex="-1">
+                    <span>
+                        Capacidad instalada
+                    </span>
+                </button>
+            </li>
+            <li class="item-container">
+                <button class="default-item click-item" id="datos-historicos">
+                    <span>
+                        Datos históricos
+                    </span>
+                </button>
+                <ul class="ul-hide" id="content-datos-historicos">
+                    <li class="item-container">
+                        <button class="default-item item-level-2" tabindex="-1">
+                            <span>
+                                Cursos diplomandos
+                            </span>
+                        </button>
+                    </li>
+                    <li class="item-container">
+                        <button class="default-item item-level-2" tabindex="-1">
+                            <span>
+                                Número de Investigadores
+                            </span>
+                        </button>
+                    </li>
+                    <li class="item-container">
+                        <button class="default-item item-level-2" tabindex="-1">
+                            <span>
+                                Horas de investigación
+                            </span>
+                        </button>
                     </li>
                 </ul>
             </li>
@@ -152,345 +233,361 @@
 
     <main id="main">
         <div class="w-100">
-            <section id="content-main" class="w-95">
-
-                <div class="d-flex justify-content-between m-2">
-                    <h3>Investigadores contratado por nivel de formación</h3>
-                    <p><strong>Período activo: </strong><samp>Tercer trimestre 2022</samp></p>
+            <section id="contentMain">
+                <div id="mainTitle" class="m-2">
+                    <h3>Investigadores contratados por nivel de formación</h3>
+                    <span><strong>Período activo:&nbsp;</strong>Tercer trimestre, 2022</span>
                 </div>
                 <form class="mt-1">
-                    <fieldset id="search">
+                    <fieldset id="mainSearchContainer" class="m-2 mb-0 mt-0">
                         <legend>
                             <span>Búsqueda</span>
                         </legend>
-                            <!-- Periodo -->
-                    <label for="period" class="concealable start-in-one">Periodo:</label>
-                    <span class="grid-three-columns concealable">
-                        <div class="list">
-                            <select id="period" class="list-data" data-select="status" tabindex="0">
-                                <option value="opcion-1">Periodo I</option>
-                                <option value="opcion-2">Periodo II</option>
-                                <option value="opcion-2">Periodo III</option>
-                                <option value="opcion-2">Periodo IV</option>
-                            </select>
-                            <button class="list-button" data-select="status" tabindex="-1"></button>
+                        <div class="grid-two-column display-bock">
+                            <div class="form-group m-0 hideable">
+                                <label for="period" class="hideable">Periodo:</label>
+                                <div class="list hideable w-100">
+                                    <select id="period" class="list-data" data-select="period" tabindex="0">
+                                        <option value="opcion-1">Periodo I</option>
+                                        <option value="opcion-2">Periodo II</option>
+                                        <option value="opcion-2">Periodo III</option>
+                                        <option value="opcion-2">Periodo IV</option>
+                                    </select>
+                                    <button class="list-button" data-select="period" tabindex="-1"></button>
+                                </div>
+                            </div>
+                            <div class="form-group m-0">
+                                <label for="year">Año</label>
+                                <input id="year" name="year" type="text" class="control w-100"
+                                    placeholder="Selccionar año" readonly>
+                            </div>
                         </div>
-                            <!-- Año -->
-                        <label for="period">Año:</label>
-                        <div class="list">
-                            <select id="period" class="list-data" data-select="status" tabindex="0">
-                                <option value="opcion-1">2022</option>
-                            </select>
-                            <button class="list-button" data-select="status" tabindex="-1"></button>
-                        </div>
-                    </span>
-                        <span class="listbox" role="listbox" id="animes" aria-labelledby="" tabindex="-1">
-                            <ul class="menu"></ul>
-                        </span>
-
-                        <button class="btn-primary m-0">Buscar</button>
+                        <button id="btnSearch" class="btn-primary">Buscar investigadores planta</button>
                     </fieldset>
                 </form>
+
+
                 <section id="results" class="fieldset">
                     <h3 class="legend"><span>Resultados</span></h3>
 
-                    <header id="header-results">
-                        <div class="badge badge-primary">Página: 5</div>
-                        <div class="badge badge-primary">Resultados obtenidos: 5 de 100</div>
-                        <button type="button" class="btn-primary m-0" data-toggle="modal" data-target="#example-modal">
-                            Agregar horas
-                        </button>
-                        <!-- <button type="button" class="btn-info">Agregar horas</button> -->
+                    <header id="headerResults">
+                        <input id="pageNumberInput" type="text" class="control" placeholder="Número de página">
+                        <div id="paginate" class="paginate">
+                            <button class="icon-previous-page" type="button" data-toggle="tooltip"
+                                data-placement="bottom" title="Página anterior"></button>
+                            <button class="icon-first-page" type="button" data-toggle="tooltip" data-placement="bottom"
+                                title="Primera página"></button>
+                            <button class="icon-last-page" type="button" data-toggle="tooltip" data-placement="bottom"
+                                title="Última página"></button>
+                            <button class="icon-next-page" type="button" data-toggle="tooltip" data-placement="bottom"
+                                title="Página siguiente"></button>
+                        </div>
+                        <div id="resultsData">
+                            &nbsp;<span>3000 págs.</span>
+                            &nbsp;<span>(10,000 Resultados)</span>
+                        </div>
+                        <button id="btnAddAcademicUnit" type="button" class="btn-info" data-toggle="modal"
+                            data-target="#modalAddInvstPlantaPorNivel">Agregar total investigadores</button>
                     </header>
 
-                    <div id="body-results">
-                        
-                        <section class="card p-2">
-                            <div class="card-body">
-                                <div class="card-menu">
-                                    <button id="target01" class="btn-pop" type="button" aria-haspopup="true"
-                                        aria-controls="menu01" data-toggle="popover" data-target="#menu01"
-                                        tabindex="0"></button>
-                                    <div id="menu01" class="popup" role="menu" aria-labelledby="target01" tabindex="-1">
-                                        <ul role="none">
-                                            <li class="menu-item" role="none">
-                                                <a class="btn-menu-item" href="#" role="menuitem" tabindex="-1">
-                                                    <span class="icon icon-clover"></span>
-                                                    <span>Editar</span>
-                                                </a>
-                                            </li>
-                                            <li class="menu-item" role="none">
-                                                <button class="btn-menu-item" role="menuitem" tabindex="-1">
-                                                    <span class="icon icon-clover"></span>
-                                                    <span>Eliminar</span>
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <h5 class="card-title">Total investigadores por nivel de formación</h5>
-                                <table class="ml-1 w-100">
-                                    <tbody >
-                                        <tr>
-                                            <td><strong>Técnico superior: </strong></td>
-                                            <td class="txt-b-aline">5</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Licenciatura: </strong></td>
-                                            <td class="txt-b-aline">50</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Especialidad: </strong></td>
-                                            <td class="txt-b-aline">30</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Maestría: </strong></h5></td>
-                                            <td class="txt-b-aline">20</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Doctorado: </strong></td>
-                                            <td class="txt-b-aline">10</td>
-                                        </tr>
-                                        
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                            <footer class="card-footer">
-                                <span class="badge sm-badge badge-primary">Trimester</span>
-                            </footer>
-                        </section>
-                        <section class="card p-2">
-                            <div class="card-body">
-                                <div class="card-menu">
-                                    <button id="target01" class="btn-pop" type="button" aria-haspopup="true"
-                                        aria-controls="menu01" data-toggle="popover" data-target="#menu01"
-                                        tabindex="0"></button>
-                                    <div id="menu01" class="popup" role="menu" aria-labelledby="target01" tabindex="-1">
-                                        <ul role="none">
-                                            <li class="menu-item" role="none">
-                                                <a class="btn-menu-item" href="#" role="menuitem" tabindex="-1">
-                                                    <span class="icon icon-clover"></span>
-                                                    <span>Editar</span>
-                                                </a>
-                                            </li>
-                                            <li class="menu-item" role="none">
-                                                <button class="btn-menu-item" role="menuitem" tabindex="-1">
-                                                    <span class="icon icon-clover"></span>
-                                                    <span>Eliminar</span>
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <h5 class="card-title">Total investigadores por nivel de formación</h5>
-                                <table class="ml-1 w-100">
-                                    <tbody >
-                                        <tr>
-                                            <td><strong>Técnico superior: </strong></td>
-                                            <td class="txt-b-aline">5</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Licenciatura: </strong></td>
-                                            <td class="txt-b-aline">50</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Especialidad: </strong></td>
-                                            <td class="txt-b-aline">30</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Maestría: </strong></h5></td>
-                                            <td class="txt-b-aline">20</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Doctorado: </strong></td>
-                                            <td class="txt-b-aline">10</td>
-                                        </tr>
-                                        
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                            <footer class="card-footer">
-                                <span class="badge sm-badge badge-primary">Trimester</span>
-                            </footer>
-                        </section>
-                        <section class="card p-2">
-                            <div class="card-body">
-                                <div class="card-menu">
-                                    <button id="target01" class="btn-pop" type="button" aria-haspopup="true"
-                                        aria-controls="menu01" data-toggle="popover" data-target="#menu01"
-                                        tabindex="0"></button>
-                                    <div id="menu01" class="popup" role="menu" aria-labelledby="target01" tabindex="-1">
-                                        <ul role="none">
-                                            <li class="menu-item" role="none">
-                                                <a class="btn-menu-item" href="#" role="menuitem" tabindex="-1">
-                                                    <span class="icon icon-clover"></span>
-                                                    <span>Editar</span>
-                                                </a>
-                                            </li>
-                                            <li class="menu-item" role="none">
-                                                <button class="btn-menu-item" role="menuitem" tabindex="-1">
-                                                    <span class="icon icon-clover"></span>
-                                                    <span>Eliminar</span>
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <h5 class="card-title">Total investigadores por nivel de formación</h5>
-                                <table class="ml-1 w-100">
-                                    <tbody >
-                                        <tr>
-                                            <td><strong>Técnico superior: </strong></td>
-                                            <td class="txt-b-aline">5</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Licenciatura: </strong></td>
-                                            <td class="txt-b-aline">50</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Especialidad: </strong></td>
-                                            <td class="txt-b-aline">30</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Maestría: </strong></h5></td>
-                                            <td class="txt-b-aline">20</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Doctorado: </strong></td>
-                                            <td class="txt-b-aline">10</td>
-                                        </tr>
-                                        
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                            <footer class="card-footer">
-                                <span class="badge sm-badge badge-primary">Trimester</span>
-                            </footer>
-                        </section>
-                        <section class="card p-2">
-                            <div class="card-body">
-                                <div class="card-menu">
-                                    <button id="target01" class="btn-pop" type="button" aria-haspopup="true"
-                                        aria-controls="menu01" data-toggle="popover" data-target="#menu01"
-                                        tabindex="0"></button>
-                                    <div id="menu01" class="popup" role="menu" aria-labelledby="target01" tabindex="-1">
-                                        <ul role="none">
-                                            <li class="menu-item" role="none">
-                                                <a class="btn-menu-item" href="#" role="menuitem" tabindex="-1">
-                                                    <span class="icon icon-clover"></span>
-                                                    <span>Editar</span>
-                                                </a>
-                                            </li>
-                                            <li class="menu-item" role="none">
-                                                <button class="btn-menu-item" role="menuitem" tabindex="-1">
-                                                    <span class="icon icon-clover"></span>
-                                                    <span>Eliminar</span>
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <h5 class="card-title">Total investigadores por nivel de formación</h5>
-                                <table class="ml-1 w-100">
-                                    <tbody >
-                                        <tr>
-                                            <td><strong>Técnico superior: </strong></td>
-                                            <td class="txt-b-aline">5</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Licenciatura: </strong></td>
-                                            <td class="txt-b-aline">50</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Especialidad: </strong></td>
-                                            <td class="txt-b-aline">30</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Maestría: </strong></h5></td>
-                                            <td class="txt-b-aline">20</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Doctorado: </strong></td>
-                                            <td class="txt-b-aline">10</td>
-                                        </tr>
-                                        
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                            <footer class="card-footer">
-                                <span class="badge sm-badge badge-primary">Trimester</span>
-                            </footer>
-                        </section>
-                        <section class="card p-2">
-                            <div class="card-body">
-                                <div class="card-menu">
-                                    <button id="target01" class="btn-pop" type="button" aria-haspopup="true"
-                                        aria-controls="menu01" data-toggle="popover" data-target="#menu01"
-                                        tabindex="0"></button>
-                                    <div id="menu01" class="popup" role="menu" aria-labelledby="target01" tabindex="-1">
-                                        <ul role="none">
-                                            <li class="menu-item" role="none">
-                                                <a class="btn-menu-item" href="#" role="menuitem" tabindex="-1">
-                                                    <span class="icon icon-clover"></span>
-                                                    <span>Editar</span>
-                                                </a>
-                                            </li>
-                                            <li class="menu-item" role="none">
-                                                <button class="btn-menu-item" role="menuitem" tabindex="-1">
-                                                    <span class="icon icon-clover"></span>
-                                                    <span>Eliminar</span>
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <h5 class="card-title">Total investigadores por nivel de formación</h5>
-                                <table class="ml-1 w-100">
-                                    <tbody >
-                                        <tr>
-                                            <td><strong>Técnico superior: </strong></td>
-                                            <td class="txt-b-aline">5</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Licenciatura: </strong></td>
-                                            <td class="txt-b-aline">50</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Especialidad: </strong></td>
-                                            <td class="txt-b-aline">30</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Maestría: </strong></h5></td>
-                                            <td class="txt-b-aline">20</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Doctorado: </strong></td>
-                                            <td class="txt-b-aline">10</td>
-                                        </tr>
-                                        
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                            <footer class="card-footer">
-                                <span class="badge sm-badge badge-primary">Trimester</span>
-                            </footer>
-                        </section>
 
-                    </div>
-
-                    <footer id="footer-results">
-                        <div class="paginate">
-                            <a href="#">«</a>
-                            <button type="button">1</button>
-                            <a href="#">2</a>
-                            <button type="button">3</button>
-                            <a href="#">»</a>
+                    <section class="sample-list-button grid-one-column m-2">
+                        <div class="pancake">
+                            <div class="pancake-title" tabindex="0" data-toggle="modal"
+                            data-target="#modalViewInvstPlantaPorNivel">
+                                Total de investigadores contratados por nivel de formación.
+                            </div>
+                            <div class="pancake-info">
+                                <span class="badge sm-badge badge-secondary">Disabled</span>
+                                <span class="badge sm-badge badge-info">850</span>
+                                <span class="badge sm-badge badge-primary">1T-2022</span>
+                            </div>
+                            <div class="pancake-menu">
+                                <button id="pancake01" class="btn-pop" data-toggle="popover" data-target="#pop-pancake-one"></button>
+                                <div class="popup" id="pop-pancake-one" aria-labelledby="pancake01">
+                                    <ul>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Change state</span>
+                                            </button>
+                                        </li>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Edit</span>
+                                            </button>
+                                        </li>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Delete</span>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
+                        <div class="pancake">
+                            <div class="pancake-title" tabindex="0" data-toggle="modal"
+                            data-target="#modalViewInvstPlantaPorNivel">
+                                Total de investigadores contratados por nivel de formación.
+                            </div>
+                            <div class="pancake-info">
+                                <span class="badge sm-badge badge-secondary">Disabled</span>
+                                <span class="badge sm-badge badge-info">850</span>
+                                <span class="badge sm-badge badge-primary">1T-2022</span>
+                            </div>
+                            <div class="pancake-menu">
+                                <button id="pancake01" class="btn-pop" data-toggle="popover" data-target="#pop-pancake-one"></button>
+                                <div class="popup" id="pop-pancake-one" aria-labelledby="pancake01">
+                                    <ul>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Change state</span>
+                                            </button>
+                                        </li>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Edit</span>
+                                            </button>
+                                        </li>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Delete</span>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pancake">
+                            <div class="pancake-title" tabindex="0" data-toggle="modal"
+                            data-target="#modalViewInvstPlantaPorNivel">
+                                Total de investigadores contratados por nivel de formación.
+                            </div>
+                            <div class="pancake-info">
+                                <span class="badge sm-badge badge-secondary">Disabled</span>
+                                <span class="badge sm-badge badge-info">850</span>
+                                <span class="badge sm-badge badge-primary">1T-2022</span>
+                            </div>
+                            <div class="pancake-menu">
+                                <button id="pancake01" class="btn-pop" data-toggle="popover" data-target="#pop-pancake-one"></button>
+                                <div class="popup" id="pop-pancake-one" aria-labelledby="pancake01">
+                                    <ul>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Change state</span>
+                                            </button>
+                                        </li>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Edit</span>
+                                            </button>
+                                        </li>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Delete</span>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pancake">
+                            <div class="pancake-title" tabindex="0" data-toggle="modal"
+                            data-target="#modalViewInvstPlantaPorNivel">
+                                Total de investigadores contratados por nivel de formación.
+                            </div>
+                            <div class="pancake-info">
+                                <span class="badge sm-badge badge-secondary">Disabled</span>
+                                <span class="badge sm-badge badge-info">850</span>
+                                <span class="badge sm-badge badge-primary">1T-2022</span>
+                            </div>
+                            <div class="pancake-menu">
+                                <button id="pancake01" class="btn-pop" data-toggle="popover" data-target="#pop-pancake-one"></button>
+                                <div class="popup" id="pop-pancake-one" aria-labelledby="pancake01">
+                                    <ul>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Change state</span>
+                                            </button>
+                                        </li>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Edit</span>
+                                            </button>
+                                        </li>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Delete</span>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pancake">
+                            <div class="pancake-title" tabindex="0" data-toggle="modal"
+                            data-target="#modalViewInvstPlantaPorNivel">
+                                Total de investigadores contratados por nivel de formación.
+                            </div>
+                            <div class="pancake-info">
+                                <span class="badge sm-badge badge-secondary">Disabled</span>
+                                <span class="badge sm-badge badge-info">850</span>
+                                <span class="badge sm-badge badge-primary">1T-2022</span>
+                            </div>
+                            <div class="pancake-menu">
+                                <button id="pancake01" class="btn-pop" data-toggle="popover" data-target="#pop-pancake-one"></button>
+                                <div class="popup" id="pop-pancake-one" aria-labelledby="pancake01">
+                                    <ul>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Change state</span>
+                                            </button>
+                                        </li>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Edit</span>
+                                            </button>
+                                        </li>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Delete</span>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pancake">
+                            <div class="pancake-title" tabindex="0" data-toggle="modal"
+                            data-target="#modalViewInvstPlantaPorNivel">
+                                Total de investigadores contratados por nivel de formación.
+                            </div>
+                            <div class="pancake-info">
+                                <span class="badge sm-badge badge-secondary">Disabled</span>
+                                <span class="badge sm-badge badge-info">850</span>
+                                <span class="badge sm-badge badge-primary">1T-2022</span>
+                            </div>
+                            <div class="pancake-menu">
+                                <button id="pancake01" class="btn-pop" data-toggle="popover" data-target="#pop-pancake-one"></button>
+                                <div class="popup" id="pop-pancake-one" aria-labelledby="pancake01">
+                                    <ul>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Change state</span>
+                                            </button>
+                                        </li>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Edit</span>
+                                            </button>
+                                        </li>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Delete</span>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pancake">
+                            <div class="pancake-title" tabindex="0" data-toggle="modal"
+                            data-target="#modalViewInvstPlantaPorNivel">
+                                Total de investigadores contratados por nivel de formación.
+                            </div>
+                            <div class="pancake-info">
+                                <span class="badge sm-badge badge-secondary">Disabled</span>
+                                <span class="badge sm-badge badge-info">850</span>
+                                <span class="badge sm-badge badge-primary">1T-2022</span>
+                            </div>
+                            <div class="pancake-menu">
+                                <button id="pancake01" class="btn-pop" data-toggle="popover" data-target="#pop-pancake-one"></button>
+                                <div class="popup" id="pop-pancake-one" aria-labelledby="pancake01">
+                                    <ul>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Change state</span>
+                                            </button>
+                                        </li>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Edit</span>
+                                            </button>
+                                        </li>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Delete</span>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pancake">
+                            <div class="pancake-title" tabindex="0" data-toggle="modal"
+                            data-target="#modalViewInvstPlantaPorNivel">
+                                Total de investigadores contratados por nivel de formación.
+                            </div>
+                            <div class="pancake-info">
+                                <span class="badge sm-badge badge-secondary">Disabled</span>
+                                <span class="badge sm-badge badge-info">850</span>
+                                <span class="badge sm-badge badge-primary">1T-2022</span>
+                            </div>
+                            <div class="pancake-menu">
+                                <button id="pancake01" class="btn-pop" data-toggle="popover" data-target="#pop-pancake-one"></button>
+                                <div class="popup" id="pop-pancake-one" aria-labelledby="pancake01">
+                                    <ul>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Change state</span>
+                                            </button>
+                                        </li>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Edit</span>
+                                            </button>
+                                        </li>
+                                        <li class="menu-item">
+                                            <button class="btn-menu-item">
+                                                <span class="icon icon-clover"></span>
+                                                <span>Delete</span>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <footer id="footerResults">
+                        <small>
+                            <span>300 / 3000 págs.</span>
+                            &nbsp;
+                            <span>(10,000 Resultados)</span>
+                        </small>
+
                     </footer>
 
                 </section>
@@ -499,50 +596,117 @@
         </div>
     </main>
 
-    <!-- Ventana modal -->
-    <div class="modal fade modal-scroll" id="example-modal" tabindex="-1" aria-hidden="true"
+        <!-- ══════════════════════+ MODAL WINDOWS ADD TOTALES DE INVESTIGADORES +══════════════════════-->
+
+    <div id="modalAddInvstPlantaPorNivel" class="modal modal-scroll fade" tabindex="-1" aria-hidden="true"
         aria-labelledby="example-modal-label">
-        <!-- <div class="modal-dialog modal-lg"> -->
         <div class="modal-dialog">
             <div class="modal-content">
-
                 <div class="modal-header">
-                    <h5 class="modal-title">Agregar totales de investigadores planta.</h5>
+                    <h5 class="modal-title">Agregar investigadores contratados por nivel de formación</h5>
                     <button type="button" class="btn-close" aria-label="Cancelar"></button>
                 </div>
 
                 <div class="modal-body">
-
                     <form class="mt-1">
-                        <div class="grid-three-columns-uniform">
+                        <div class="form-group grid-three-col-1fr-1fr-1fr">
                             <label for="name"><strong>Nivel de formación</strong> </label>
                             <label for="name"><strong>Total</strong></label>
                             <label for="name"><strong>Total femenino</strong></label>
 
                             <label for="name">Técnico superior:</label>
-                            <input type="text" class="control w-100" placeholder="Total..." required>
-                            <input type="text" class="control w-100" placeholder="Total femenino..." required>
+                            <div class="spin-container w-100">
+                                <input id="spinTwo" type="number" class="spin-custom" placeholder="Total..."
+                                    tabindex="0">
+                                <span class="spin-buttons" data-spinner="spinTwo">
+                                    <button class="btn-spin-up" type="button" tabindex="-1"></button>
+                                    <button class="btn-spin-down" type="button" tabindex="-1"></button>
+                                </span>
+                            </div>
+                            <div class="spin-container w-100">
+                                <input id="spinTwo" type="number" class="spin-custom" placeholder="Total femenino..."
+                                    tabindex="0">
+                                <span class="spin-buttons" data-spinner="spinTwo">
+                                    <button class="btn-spin-up" type="button" tabindex="-1"></button>
+                                    <button class="btn-spin-down" type="button" tabindex="-1"></button>
+                                </span>
+                            </div>
 
                             <label for="name">Licenciados:</label>
-                            <input type="text" class="control w-100" placeholder="Total..." required>
-                            <input type="text" class="control w-100" placeholder="Total femenino..." required>
+                            <div class="spin-container w-100">
+                                <input id="spinTwo" type="number" class="spin-custom" placeholder="Total..."
+                                    tabindex="0">
+                                <span class="spin-buttons" data-spinner="spinTwo">
+                                    <button class="btn-spin-up" type="button" tabindex="-1"></button>
+                                    <button class="btn-spin-down" type="button" tabindex="-1"></button>
+                                </span>
+                            </div>
+                            <div class="spin-container w-100">
+                                <input id="spinTwo" type="number" class="spin-custom" placeholder="Total femenino..."
+                                    tabindex="0">
+                                <span class="spin-buttons" data-spinner="spinTwo">
+                                    <button class="btn-spin-up" type="button" tabindex="-1"></button>
+                                    <button class="btn-spin-down" type="button" tabindex="-1"></button>
+                                </span>
+                            </div>
 
                             <label for="name">Especialidad:</label>
-                            <input type="text" class="control w-100" placeholder="Total..." required>
-                            <input type="text" class="control w-100" placeholder="Total femenino..." required>
+                            <div class="spin-container w-100">
+                                <input id="spinTwo" type="number" class="spin-custom" placeholder="Total..."
+                                    tabindex="0">
+                                <span class="spin-buttons" data-spinner="spinTwo">
+                                    <button class="btn-spin-up" type="button" tabindex="-1"></button>
+                                    <button class="btn-spin-down" type="button" tabindex="-1"></button>
+                                </span>
+                            </div>
+                            <div class="spin-container w-100">
+                                <input id="spinTwo" type="number" class="spin-custom" placeholder="Total femenino..."
+                                    tabindex="0">
+                                <span class="spin-buttons" data-spinner="spinTwo">
+                                    <button class="btn-spin-up" type="button" tabindex="-1"></button>
+                                    <button class="btn-spin-down" type="button" tabindex="-1"></button>
+                                </span>
+                            </div>
 
                             <label for="name">Maestría:</label>
-                            <input type="text" class="control w-100" placeholder="Total..." required>
-                            <input type="text" class="control w-100" placeholder="Total femenino..." required>
+                            <div class="spin-container w-100">
+                                <input id="spinTwo" type="number" class="spin-custom" placeholder="Total..."
+                                    tabindex="0">
+                                <span class="spin-buttons" data-spinner="spinTwo">
+                                    <button class="btn-spin-up" type="button" tabindex="-1"></button>
+                                    <button class="btn-spin-down" type="button" tabindex="-1"></button>
+                                </span>
+                            </div>
+                            <div class="spin-container w-100">
+                                <input id="spinTwo" type="number" class="spin-custom" placeholder="Total femenino..."
+                                    tabindex="0">
+                                <span class="spin-buttons" data-spinner="spinTwo">
+                                    <button class="btn-spin-up" type="button" tabindex="-1"></button>
+                                    <button class="btn-spin-down" type="button" tabindex="-1"></button>
+                                </span>
+                            </div>
 
                             <label for="name">Doctorado:</label>
-                            <input type="text" class="control w-100" placeholder="Total..." required>
-                            <input type="text" class="control w-100" placeholder="Total femenino..." required> 
+                            <div class="spin-container w-100">
+                                <input id="spinTwo" type="number" class="spin-custom" placeholder="Total..."
+                                    tabindex="0">
+                                <span class="spin-buttons" data-spinner="spinTwo">
+                                    <button class="btn-spin-up" type="button" tabindex="-1"></button>
+                                    <button class="btn-spin-down" type="button" tabindex="-1"></button>
+                                </span>
+                            </div>
+                            <div class="spin-container w-100">
+                                <input id="spinTwo" type="number" class="spin-custom" placeholder="Total femenino..."
+                                    tabindex="0">
+                                <span class="spin-buttons" data-spinner="spinTwo">
+                                    <button class="btn-spin-up" type="button" tabindex="-1"></button>
+                                    <button class="btn-spin-down" type="button" tabindex="-1"></button>
+                                </span>
+                            </div>
 
                         </div>
                         
                     </form>
-
                 </div>
 
                 <div class="modal-footer">
@@ -553,6 +717,50 @@
             </div>
         </div>
     </div>
+
+     <!-- ══════════════════════+ MODAL WINDOWS VIEW TOTALES DE INVESTIGADORES +══════════════════════-->
+     <div id="modalViewInvstPlantaPorNivel" class="modal modal-scroll fade" tabindex="-1" aria-hidden="true"
+     aria-labelledby="example-modal-label">
+     <div class="modal-dialog">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title">Total de investigadores contratados por nivel de formación.<br><strong style="color: #1439CC !important">1T-2022</strong></h5>
+                 <button type="button" class="btn-close" aria-label="Cancelar"></button>
+             </div>
+
+             <div class="modal-body">
+                 <form class="mt-1">
+                     <div class="form-group grid-two-column-1fr-auto">
+                         <label for="name" class="border-dotted"><strong>Técnico Superior:</strong> <span></span></label>
+                         <p>100</p>
+
+                         <label for="name" class="border-dotted"><strong>Licenciatura:</strong> </label>
+                         <p>100</p>
+
+                         <label for="name" class="border-dotted"><strong>Especialidad:</strong> </label>
+                         <p>200</p>
+
+                         <label for="name" class="border-dotted"><strong>Maestría:</strong> </label>
+                         <p>150</p>
+
+                         <label for="name" class="border-dotted"><strong>Doctorado:</strong> </label>
+                         <p>300</p>
+
+                     </div>
+                     
+                 </form>
+             </div>
+
+             <div class="modal-footer">
+                 <button type="button" class="btn-light">Cancelar</button>
+                 <button type="button" class="btn-primary">Aceptar</button>
+             </div>
+
+         </div>
+     </div>
+ </div>
+
+
 </body>
 
 </html>

@@ -1,12 +1,14 @@
-const sltPublicaciones = document.getElementById('sltPublicaciones');
-const componentPblc = document.querySelectorAll('#componentPblc');
-const chkAutorCorp = document.getElementById('chkAutorCorp');
-const autorCorporativo = document.getElementById('autorCorporativo');
+import { $, getElements } from "./ui-bic.js";
+
+const sltPublicaciones = $('sltPublicaciones');
+const componentPblc = getElements('#componentPblc');
+const chkAutorCorp = $('chkAutorCorp');
+const autorCorporativo = $('autorCorporativo');
 
 /**
- * Evento de cambio en select tipo/nombre publicaciOn
+ * Evento de cambio en select tipo/nombre publicación
  */
-this.sltPublicaciones.addEventListener('change', () => {
+sltPublicaciones.addEventListener('change', () => {
     let seleccion = sltPublicaciones.options[sltPublicaciones.selectedIndex].value;
     if(seleccion.trim() === 'seccion de libro') {
         agregarComponentes(componentPblc,[0,1,6,8,9]);
@@ -23,7 +25,7 @@ this.sltPublicaciones.addEventListener('change', () => {
     }
 },false);
 
-this.chkAutorCorp.addEventListener('change',() => {
+chkAutorCorp.addEventListener('change',() => {
     if(chkAutorCorp.checked){
         autorCorporativo.disabled = false;
         autorCorporativo.focus();
@@ -34,7 +36,7 @@ this.chkAutorCorp.addEventListener('change',() => {
 
 /**
  * 
- * @param {*} element elemento que se le removerA la clase que lo oculta
+ * @param {*} element elemento que se le removerá la clase que lo oculta
  */
 const eliminarClaseHide = (element) => {
     element.classList.remove('hide-element')
@@ -42,7 +44,7 @@ const eliminarClaseHide = (element) => {
 
 /**
  * 
- * @param {*} element elemento que se le eliminarA la clase que lo oculta
+ * @param {*} element elemento que se le eliminará la clase que lo oculta
  */
  const agregarClaseHide = (element) => {
     element.classList.add('hide-element')
